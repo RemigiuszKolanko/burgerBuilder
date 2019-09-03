@@ -1,11 +1,14 @@
 import React from 'react';
 
+import Layout from './components/Layout/Layout';
+import BurgerBulider from './containers/BurgerBuilder/BurgerBuilder';
+
 function App() {
-  return (
-    <div>
-      Remigiusz Kolanko
-    </div>
-  );
+    return (
+        <Layout>
+            <BurgerBulider/>
+        </Layout>
+    );
 }
 
 export default App;
