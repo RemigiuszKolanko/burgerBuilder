@@ -13,11 +13,6 @@ const INGREDIENT_PRICES = {
 
 class BurgerBuilder extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {...}
-    // }
-
     state = {
         ingredients: {
             salad: 0,
@@ -25,10 +20,12 @@ class BurgerBuilder extends Component {
             cheese: 0,
             meat: 0
         },
-        totalPrice: 4
+        totalPrice: 4,
+        purchasable: false
     }
 
     addIngredientHandler = (type) => {
+
         let ingredients = {...this.state.ingredients};
         ingredients[type]++;
 
@@ -38,12 +35,16 @@ class BurgerBuilder extends Component {
         this.setState({
             ingredients: {...ingredients},
             totalPrice: totalPrice
-        })
+        });
+
+        this.updatePurchaseState(ingredients);
         
     }
 
     removeIngredientHandler = (type) => {
+
         let ingredients = {...this.state.ingredients};
+
         if(ingredients[type] > 0) { 
             ingredients[type]--;
             let totalPrice = this.state.totalPrice;
@@ -51,11 +52,23 @@ class BurgerBuilder extends Component {
             this.setState({
                 ingredients: ingredients,
                 totalPrice: totalPrice
-            })
+            });
         }
+
+        this.updatePurchaseState(ingredients);
+    }
+
+    updatePurchaseState(ingredients) {
+
+        const sum = Object.values(ingredients).reduce((sum, el) => sum + el);
+
+        this.setState({
+            purchasable: sum > 0
+        });
     }
 
     render () {
+        
         const disabledInfo = {
             ...this.state.ingredients
         }
@@ -71,7 +84,8 @@ class BurgerBuilder extends Component {
                     ingredientAdded={this.addIngredientHandler}
                     ingredientDeleted={this.removeIngredientHandler}
                     disabled={disabledInfo}
-                    price={this.state.totalPrice} />
+                    price={this.state.totalPrice}
+                    purchesable={this.state.purchasable}/>
             </Auxiliary>
         );
     };
