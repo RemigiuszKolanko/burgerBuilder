@@ -11,10 +11,6 @@ const controls = [
 ];
 
 const buildControls = (props) => {
-
-    console.log(props);
-    
-    
     return (
         <div className={classes.BuildControls}>
             <p>Current price: <strong>{props.price.toFixed(2)}</strong></p>
@@ -26,7 +22,10 @@ const buildControls = (props) => {
                     addClick={() => props.ingredientAdded(ctrl.type)}
                     deleteClick={() => props.ingredientDeleted(ctrl.type)}/>
             })}
-            <button disabled={!props.purchesable} className={classes.OrderButton}>ORDER NOW</button>
+            <button
+                disabled={!props.purchesable}
+                className={classes.OrderButton}
+                onClick={props.ordered}>ORDER NOW</button>
         </div>
     )
 }
