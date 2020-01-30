@@ -76,7 +76,8 @@ class Auth extends React.Component {
     render() {
         const formElementsArray = [];
 
-        for (let key in this.state.controls) {
+        let key = null;
+        for (key in this.state.controls) {
             formElementsArray.push({
                 id: key,
                 config: this.state.controls[key]

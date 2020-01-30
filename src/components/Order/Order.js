@@ -2,7 +2,9 @@ import React from "react";
 
 const Order = props => {
   const ingredients = [];
-  for (let ingredientName in props.ingredients) {
+
+  let ingredientName = null;
+  for (ingredientName in props.ingredients) {
     ingredients.push({
       name: ingredientName,
       amount: props.ingredients[ingredientName]

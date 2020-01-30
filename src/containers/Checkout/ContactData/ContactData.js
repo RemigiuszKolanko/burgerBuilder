@@ -101,7 +101,9 @@ class ContactData extends Component {
       loading: true
     });
     const formData = {};
-    for (const formElement in this.state.orderForm) {
+
+    let formElement;
+    for (formElement in this.state.orderForm) {
       formData[formElement] = this.state.orderForm[formElement].value;
     }
 
@@ -130,8 +132,8 @@ class ContactData extends Component {
     });
 
     let formIsValid = true;
-
-    for (let inputElement in updatedOrderForm) {
+    let inputElement;
+    for (inputElement in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputElement].valid && formIsValid;
     }
 
@@ -141,7 +143,8 @@ class ContactData extends Component {
   render() {
     const formElementsArray = [];
 
-    for (let key in this.state.orderForm) {
+    let key;
+    for (key in this.state.orderForm) {
       formElementsArray.push({
         id: key,
         config: this.state.orderForm[key]
